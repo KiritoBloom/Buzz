@@ -61,7 +61,6 @@ const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions);
 
-// Explicitly type the parameters for req and res
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await handler(req, res);
 };
