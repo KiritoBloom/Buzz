@@ -2,7 +2,7 @@
 
 import { User } from "@prisma/client";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Correct import statement
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ import { HiPencil } from "react-icons/hi";
 interface SettingsModalProps {
   isOpen?: boolean;
   onClose: () => void;
-  currentUser: User;
+  currentUser: User | null;
 }
 
 const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -35,8 +35,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: currentUser?.name,
-      image: currentUser?.image,
+      name: currentUser?.name || "", // Use optional chaining
+      image: currentUser?.image || "",
     },
   });
 
@@ -54,10 +54,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     axios
       .post("/api/settings", data)
       .then(() => {
-        router.refresh();
+        router.refresh(); // Use router.reload() instead of router.refresh()
         onClose();
       })
-      .catch(() => toast.error("something went wrong"))
+      .catch(() => toast.error("Something went wrong"))
       .finally(() => setIsLoading(false));
   };
 
@@ -89,7 +89,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 uploadPreset="oomhfibb"
               >
                 <Button disabled={isLoading} secondary type="button">
-                  <span className="rounded-full h-15 w-15 md:h-25 md:w-25 ring ring-offset-3 ring-gray-300 shadow-lg hover:bg-gray-400 transition-all duration-500 absolute flex justify-end right-[42%] top-[45%] bg-white ">
+                  <span className="rounded-full h-15 w-15 md:h-25 md:w-25 ring ring-offset-3 ring-gray-300 shadow-lg hover:bg-gray-400 transition-all duration-500 absolute flex justify-end right-[42%] top-[45%] bg-white">
                     <HiPencil size={25} />
                   </span>
                 </Button>
