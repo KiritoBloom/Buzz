@@ -50,7 +50,7 @@ const MobileItem: React.FC<MobileItemProps> = ({
       {/* Display the name above the icon on hover or permanently when active */}
       <div
         className={clsx(
-          "text-xs mt-1 font-semibold text-gray-800 transition-all duration-500",
+          "text-xs mt-1 font-bold text-gray-800 transition-all duration-500 ",
           isHovered && "opacity-100", // Example transition for text appearing
           !isHovered && "opacity-0", // Hide text initially
           active && "opacity-100"
