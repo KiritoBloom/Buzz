@@ -17,9 +17,9 @@ BuzzPulse is an advanced real-time messaging platform leveraging Next.js 13, Pri
 
 - **TypeScript**
 - **Next.js**
-- **UpStash**
-- **MongoDB**
-- **Pinecone**
+- **Pusher**
+- **NextAuth**
+
 
 ## Getting Started
 
